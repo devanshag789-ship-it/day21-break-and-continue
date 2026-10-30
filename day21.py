@@ -1,28 +1,72 @@
-# # for i in range(12):
-# #     print(i+1)
-# #     if i==9:
-# #         print("The value of i is",i)
-# #         break
 
-# # print("loop ko chodkar nikal gaya")
+def read_integer(prompt):
+    """Keep asking until the user enters a valid integer."""
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a whole number.")
 
-# for i in range(12):
-#     if i==9:
-#         print("Skipped the iteration")
-#         continue
-#     print(i+1)
-#     print(i+1)
-#     print(i+1)
-#     print(i+1)
-#     print(i+1)
-#     print(i+1)
-#     print(i+1)
-    
-# # print("loop ko chodkar nikal gaya")
 
-# Keep asking until the user enters 0; break then exits the loop.
-while True:
-    i=int(input("Enter a number(0 to exit): "))
-    print("You entered",i)
-    if i==0:
-        break
+def numbers_until_zero(numbers):
+    """Collect numbers until zero is encountered (break)."""
+    result = []
+
+    for number in numbers:
+        result.append(number)
+        if number == 0:
+            break
+
+    return result
+
+
+def odd_numbers(numbers):
+    """Return only odd numbers by skipping even numbers (continue)."""
+    result = []
+
+    for number in numbers:
+        if number % 2 == 0:
+            continue
+        result.append(number)
+
+    return result
+
+
+def main():
+    while True:
+        print("\n--- BREAK AND CONTINUE DEMO ---")
+        print("1. Demonstrate break")
+        print("2. Demonstrate continue")
+        print("3. Exit")
+
+        choice = read_integer("Choose an option: ")
+
+        if choice == 1:
+            print("\nEnter numbers (0 to stop):")
+            entered = []
+
+            while True:
+                number = read_integer("Enter a number: ")
+                entered.append(number)
+
+                if number == 0:
+                    break
+
+            print("Numbers entered:", entered)
+            print("Loop stopped using break.")
+
+        elif choice == 2:
+            numbers = list(range(1, 11))
+            print("\nOriginal numbers:", numbers)
+            print("Odd numbers:", odd_numbers(numbers))
+
+        elif choice == 3:
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice. Select 1, 2, or 3.")
+
+
+if __name__ == "__main__":
+    main()
